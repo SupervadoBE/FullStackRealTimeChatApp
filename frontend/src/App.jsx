@@ -10,6 +10,7 @@ import { useAuthStore } from "./store/useAuthStore";
 import { useEffect } from "react";
 
 import { Loader } from "lucide-react";
+import { Toaster } from "react-hot-toast";
 
 const App = () => {
   const { authUser, checkAuth, isCheckingAuth } = useAuthStore();
@@ -36,13 +37,15 @@ const App = () => {
         {/* prettier-ignore */}
         <Route path="/signup" element={ !authUser ? <SignUpPage /> : <Navigate to="/" /> } />
         {/* prettier-ignore */}
-        <Route path="/login" element={ !authUser ? <LoginPage /> : <Navigate to="/login" />  } />
+        <Route path="/login" element={ !authUser ? <LoginPage /> : <Navigate to="/" />  } />
         {/* prettier-ignore */}
         <Route path="/setting" element={ <SettingsPage /> } />
         {/* prettier-ignore */}
         <Route path="/profile" element={ authUser ? <ProfilePage /> : <Navigate to="/login" /> } />
         {/* <Route path="/chat" element={<Chat />} /> */}
       </Routes>
+
+      <Toaster />
     </>
   );
 };
