@@ -10,6 +10,8 @@ export const useAuthStore = create((set) => ({
 
   isCheckingAuth: true,
 
+  onlineUsers: [],
+
   checkAuth: async () => {
     try {
       const res = await axiosInstance.get("/auth/check");
@@ -30,9 +32,7 @@ export const useAuthStore = create((set) => ({
       set({ authUser: res.data });
       toast.success("Account Created Successful!");
     } catch (error) {
-      toast.error(
-        error.response?.data?.message || "Error occurred during sign up"
-      );
+      toast.error(error.response?.data?.message || "Error occurred during sign up");
     } finally {
       set({ isSigningUp: false });
     }
@@ -45,9 +45,7 @@ export const useAuthStore = create((set) => ({
       set({ authUser: res.data });
       toast.success("Login Successful!");
     } catch (error) {
-      toast.error(
-        error.response?.data?.message || "Error occurred during login"
-      );
+      toast.error(error.response?.data?.message || "Error occurred during login");
     } finally {
       set({ isLoggingIn: false });
     }
@@ -59,9 +57,7 @@ export const useAuthStore = create((set) => ({
       set({ authUser: null });
       toast.success("Logged out successfully");
     } catch (error) {
-      toast.error(
-        error.response?.data?.message || "Error occurred during logout"
-      );
+      toast.error(error.response?.data?.message || "Error occurred during logout");
     }
   },
 
@@ -72,9 +68,7 @@ export const useAuthStore = create((set) => ({
       set({ authUser: res.data });
       toast.success("Profile Updated Successfully!");
     } catch (error) {
-      toast.error(
-        error.response?.data?.message || "Error occurred during profile update"
-      );
+      toast.error(error.response?.data?.message || "Error occurred during profile update");
     } finally {
       set({ isUpdatingProfile: false });
     }
