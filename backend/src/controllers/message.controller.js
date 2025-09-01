@@ -29,7 +29,7 @@ export const getMessages = async (req, res) => {
 
     res.status(200).json(messages);
   } catch (error) {
-    console.log("Error in getMessages: ", error.message);
+    console.log("Error in getMessages controller:", error.message);
     res.status(500).json({ message: "Internal server error" });
   }
 };
@@ -41,9 +41,7 @@ export const sendMessage = async (req, res) => {
     const senderId = req.user._id;
 
     if (!text && !image) {
-      return res
-        .status(400)
-        .json({ message: "Message text or image is required" });
+      return res.status(400).json({ message: "Message text or image is required" });
     }
 
     let imageUrl;
