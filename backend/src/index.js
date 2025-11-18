@@ -13,7 +13,8 @@ const app = express();
 
 const PORT = process.env.PORT || 5001;
 
-app.use(express.json());
+app.use(express.json({ limit: "10mb" })); // Base64 verisi için limiti artırın
+app.use(express.urlencoded({ limit: "10mb", extended: true })); // İhtiyatlılık için bunu da artırın
 app.use(cookieParser());
 app.use(
   cors({
